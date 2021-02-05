@@ -44,9 +44,19 @@ img {
   margin-bottom: 1rem;
 }
 
+.menu a {
+  color: #222;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: #999;
+  text-decoration: none;
+}
+
 .container {
   margin: 0 auto;
-  width: 80%;
+  width: 80vw;
   height: 80vh;
   background-color: #222;
   border: medium solid #000;
@@ -59,6 +69,273 @@ img {
   border: medium solid #999;
 }
 
+.sub-item {
+  background-color: #999;
+  padding: 1rem;
+  border: medium solid #ccc;
+  font-size: 1rem;
+}
+
+/* Grid explicit */
 .grid-explicit {
   display: grid;
+  grid-template-columns: 20% repeat(2, 30%) 20%;
+  grid-template-rows: repeat(5, auto);
+  gap: 0;
+}
+
+.grid-explicit .item:nth-child(10) {
+  background-color: rebeccapurple;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row: 2 / 3;
+  grid-column: 3 / 5;
+}
+
+.grid-explicit .item:nth-child(12) {
+  background-color: royalblue;
+  grid-row: span 2;
+  grid-column: span 3;
+}
+
+.grid-explicit .item:nth-child(15) {
+  background-color: tomato;
+  grid-row: 1 / span 2;
+  grid-column: 1 / span 2;
+}
+
+/* Grid lines */
+.grid-line-names {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: [c1] 1fr [c2] 1fr [c3] 1fr [c4];
+  grid-template-rows: [r1] auto [r2] auto [r3] auto [r4];
+}
+
+.grid-line-names .item:nth-child(3) {
+  background-color: teal;
+  grid-row: r3 / r4;
+  grid-column: c1 / c4;
+}
+
+/* Grid areas */
+.grid-areas {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  grid-template-rows: 100px repeat(2, 1fr) 60px;
+  grid-template-areas:
+    "header header"
+    "content sidebar"
+    "content ."
+    "footer footer";
+}
+
+.header {
+  grid-area: header;
+  background-color: yellow;
+}
+
+.content {
+  grid-area: content;
+  background-color: crimson;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: darkgoldenrod;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: darkslateblue;
+}
+
+/* Grid implicit */
+.grid-implicit {
+  display: grid;
+  /* grid explicit */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.explicit {
+  background-color: orange;
+}
+
+.implicit {
+  background-color: midnightblue;
+}
+
+/* Grid flow */
+.grid-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 120px);
+  grid-auto-flow: row;
+  grid-auto-rows: 100px;
+  grid-auto-flow: column;
+  grid-auto-columns: 70px;
+}
+
+/* Grid flow dense */
+.grid-flow-dense {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: row dense;
+  grid-auto-flow: column dense;
+}
+
+/* .grid-flow-dense .item:nth-child(9) {
+  background-color: orange;
+  grid-row: span 3;
+  grid-column: span 3;
+} */
+
+.grid-flow-dense .item:nth-child(11) {
+  background-color: orange;
+  grid-row: span 3;
+  grid-column: span 3;
+}
+
+/* Grid layers */
+.grid-layers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.grid-layers .item:nth-child(1) {
+  background-color: orangered;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.grid-layers .item:nth-child(2) {
+  background-color: navy;
+  grid-column: 3 / 5;
+  grid-row: 1 / 3;
+}
+
+.grid-layers .item:nth-child(3) {
+  background-color: mediumvioletred;
+  grid-column: 1 / 3;
+  grid-row: 3 / 6;
+}
+
+.grid-layers .item:nth-child(4) {
+  background-color: maroon;
+  grid-column: 3 / 5;
+  grid-row: 3 / 6;
+}
+
+.grid-layers .item:nth-child(5) {
+  background-color: yellow;
+  opacity: 0.75;
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+}
+
+/* Grid order */
+.grid-order {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: column;
+}
+
+.grid-order .item:nth-child(1) {
+  order: 1;
+}
+
+.grid-order .item:nth-child(2) {
+  order: 2;
+}
+
+.grid-order .item:nth-child(5) {
+  order: -1;
+}
+
+/* Grid align items*/
+.grid-align {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, 200px);
+  justify-items: start;
+  align-items: end;
+}
+
+.grid-align .item:nth-child(4) {
+  background-color: teal;
+  justify-self: start;
+  align-self: center;
+}
+
+/* Grid align tracks */
+.grid-align-tracks {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, 200px);
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+/* Grid min-max */
+.grid-min-max {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(100px, 200px));
+  grid-template-columns: repeat(4, minmax(min-content, 200px));
+  grid-template-columns: repeat(4, minmax(100px, min-content));
+  grid-template-columns: repeat(4, minmax(100px, max-content));
+  grid-template-columns: repeat(4, minmax(max-content, 200px));
+  grid-template-columns: repeat(4, minmax(min-content, max-content));
+}
+
+/* Grid repeat */
+.grid-repeat {
+  display: grid;
+  grid-template-columns: repeat(4, 10% 20% 30% 40%);
+  grid-template-columns: repeat(3, 10% 20% 30% 40%);
+  grid-template-columns: repeat(2, 10% 20% 30% 40%);
+  grid-template-columns: repeat(1, 10% 20% 30% 40%);
+  grid-template-rows: repeat(2, 10vh 20vh);
+}
+
+/* Grid dynamics */
+.grid-dynamics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 100px);
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+/* Grid responsive */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Grid nested */
+.grid-nested {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Subgrids */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.sub-grid {
+  grid-column: span 3;
+  grid-row: 1 / 3;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
 }
